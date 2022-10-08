@@ -1,2 +1,2 @@
 # Spring
-Study for SPRING
+Study SPRING
