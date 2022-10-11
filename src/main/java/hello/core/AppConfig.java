@@ -18,18 +18,23 @@ public class AppConfig {
     //App의 구성, 설정 정보에 @Configuration
     //@Bean은 컨테이너에 등록됨.
 
+
     @Bean
     public MemberService memberService(){
-        return new MemberServiceImpl(MemberRepository());
+        System.out.println("call AppConfig.memberService"); //soutm
+        return new MemberServiceImpl(memberRepository());
     }
     @Bean
-    public MemberRepository MemberRepository() {
+    public MemberRepository memberRepository() {
+
+        System.out.println("call AppConfig.memberRepository");
         return new MemoryMemberRepository();
     }
     @Bean
     public OrderService orderService(){
         //생성자 이용
-        return new OrderServiceImpl(new MemoryMemberRepository(), discountPolicy());
+        System.out.println("call AppConfig.orderService");
+        return new OrderServiceImpl(memberRepository(), discountPolicy());
     }
     @Bean
     public DiscountPolicy discountPolicy(){
