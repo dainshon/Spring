@@ -1,11 +1,14 @@
 package hello.core.scan.filter;
 
-import org.junit.jupiter.api.Assertions;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.FilterType;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 
 public class ComponentFilterAppConfigTest {
@@ -14,7 +17,15 @@ public class ComponentFilterAppConfigTest {
     void filterScan(){
         AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext(ComponentFilterAppConfig.class);
         BeanA beanA = ac.getBean("beanA", BeanA.class);
-       // Assertions.assertThat(beanA).isNotNull();
+        Assertions.assertThat(beanA).isNotNull();
+
+        //ac.getBean("beanB", BeanB.class);   // excludecomponent 했기때문에 오류나야 정상
+
+        assertThrows(
+                NoSuchBeanDefinitionException.class,
+                () -> ac.getBean("beanB", BeanB.class)
+        );
+
     }
 
     @Configuration
