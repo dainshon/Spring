@@ -15,10 +15,12 @@ import org.springframework.context.annotation.FilterType;
         )
 public class AutoAppConfig {
 
+/*
         @Bean(name="memoryMemberRepository")    //같은 이름의 Bean이 중복 등록되는데 Test에서 오류X
         MemberRepository memberRepository(){
                 return new MemoryMemberRepository();
         }
+*/
 
 
 }
