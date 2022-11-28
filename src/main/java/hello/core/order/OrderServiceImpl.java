@@ -9,8 +9,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class OrderServiceImpl implements OrderService{
 
-    private MemberRepository memberRepository;
-    private DiscountPolicy discountPolicy;
+    private final MemberRepository memberRepository;
+    private final DiscountPolicy discountPolicy;
 //    private final DiscountPolicy discountPolicy = new FixDiscountPolicy();
 //    private final DiscountPolicy discountPolicy = new RateDiscountPolicy();
 
@@ -18,14 +18,7 @@ public class OrderServiceImpl implements OrderService{
     //수정자 주입 방식 (setter)
     // setter에서 MemberRepository, DiscountPolicy 의존관계 주입해줌
     // ->OrderServiceImpl 필요 x
-    @Autowired
-    public void setMemberRepository(MemberRepository memberRepository){
-        this.memberRepository = memberRepository;
-    }
-    @Autowired
-    public void setDiscountPolicy(DiscountPolicy discountPolicy){
-        this.discountPolicy = discountPolicy;
-    }
+
 
 
     //생성자 위헤 autowired
@@ -47,4 +40,6 @@ public class OrderServiceImpl implements OrderService{
     public MemberRepository getMemberRepository() {
         return memberRepository;
     }
+
+
 }
