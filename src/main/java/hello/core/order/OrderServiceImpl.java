@@ -3,10 +3,12 @@ package hello.core.order;
 import hello.core.discount.DiscountPolicy;
 import hello.core.member.Member;
 import hello.core.member.MemberRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
+@RequiredArgsConstructor  //(Lombok) final붙은 애들 가지고 생성자 만들어줌.
 public class OrderServiceImpl implements OrderService{
 
     private final MemberRepository memberRepository;
@@ -21,8 +23,8 @@ public class OrderServiceImpl implements OrderService{
 
 
 
-    //생성자 위헤 autowired
-    @Autowired
+    //생성자 위헤 autowired -> 생성자 하나니까 생략
+
     public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
